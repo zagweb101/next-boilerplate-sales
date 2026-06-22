@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Boilerplate — Ship your SaaS in minutes</title>
+  <meta name="description" content="Production-ready Next.js 16 boilerplate with Auth, Stripe, Teams, AI, Email, and more. Save 20+ days of development." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0a;
+      --card: #161616;
+      --border: #262626;
+      --text: #fafafa;
+      --muted: #a3a3a3;
+      --primary: #fff;
+      --primary-fg: #000;
+      --accent: #3b82f6;
+      --green: #22c55e;
+      --red: #ef4444;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Nav */
+    nav { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    nav .logo { font-size: 18px; font-weight: 700; }
+    nav .links { display: flex; gap: 24px; }
+    nav .links a { color: var(--muted); font-size: 14px; }
+    nav .links a:hover { color: var(--text); }
+    
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 99px; padding: 6px 14px; font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; max-width: 700px; margin: 0 auto 24px; }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p { font-size: 20px; color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
+    .hero .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; transition: opacity .2s; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--primary); color: var(--primary-fg); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .hero .sub { font-size: 14px; color: var(--muted); margin-top: 16px; }
+    
+    /* Stats bar */
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 0; margin-top: 60px; }
+    .stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat .num { font-size: 32px; font-weight: 800; }
+    .stat .label { font-size: 14px; color: var(--muted); }
+    
+    /* Features */
+    .features { padding: 80px 0; }
+    .section-title { text-align: center; margin-bottom: 48px; }
+    .section-title h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+    .section-title p { color: var(--muted); margin-top: 8px; font-size: 18px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .feature .icon { font-size: 28px; margin-bottom: 16px; }
+    .feature h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .feature p { font-size: 14px; color: var(--muted); }
+    
+    /* Pricing */
+    .pricing { padding: 80px 0; border-top: 1px solid var(--border); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .price-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 32px; position: relative; }
+    .price-card.popular { border-color: var(--accent); border-width: 2px; }
+    .price-card .tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 99px; }
+    .price-card h3 { font-size: 22px; font-weight: 700; }
+    .price-card .desc { font-size: 14px; color: var(--muted); margin: 6px 0 24px; }
+    .price-card .price { font-size: 42px; font-weight: 800; }
+    .price-card .price .period { font-size: 16px; color: var(--muted); font-weight: 400; }
+    .price-card .buy { display: block; width: 100%; text-align: center; margin: 24px 0; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; }
+    .price-card .buy.primary { background: var(--primary); color: var(--primary-fg); }
+    .price-card .buy.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .price-card ul { list-style: none; }
+    .price-card ul li { display: flex; align-items: start; gap: 10px; font-size: 14px; color: var(--muted); padding: 6px 0; }
+    .price-card ul li .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    
+    /* FAQ */
+    .faq { padding: 80px 0; border-top: 1px solid var(--border); }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; color: var(--muted); }
+    
+    /* CTA */
+    .cta-section { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); }
+    .cta-section h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+    .cta-section p { color: var(--muted); margin: 12px 0 32px; font-size: 18px; }
+    
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 14px; color: var(--muted); }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .stats .container { grid-template-columns: repeat(2, 1fr); }
+      nav .links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="logo">⚡ Next Boilerplate</div>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/zagweb101/next-boilerplate">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge"><span class="dot"></span> Next.js 16 + Prisma 7 + Tailwind v4</div>
+      <h1>Ship your SaaS in <span class="highlight">minutes</span>, not weeks</h1>
+      <p>A production-ready Next.js boilerplate with auth, billing, teams, AI, emails, and deployment — all pre-configured. Save 20+ days of development.</p>
+      <div class="cta">
+        <a href="#pricing" class="btn btn-primary">Get Started →</a>
+        <a href="https://github.com/zagweb101/next-boilerplate" class="btn btn-outline">View on GitHub</a>
+      </div>
+      <p class="sub">One-time payment · 30-day money-back guarantee · Lifetime updates</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat"><div class="num">18+</div><div class="label">Routes ready</div></div>
+      <div class="stat"><div class="num">15+</div><div class="label">UI Components</div></div>
+      <div class="stat"><div class="num">20</div><div class="label">Days saved</div></div>
+      <div class="stat"><div class="num">$400+</div><div class="label">Value included</div></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Everything you need, included</h2>
+        <p>9 production-grade features out of the box</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature"><div class="icon">🔐</div><h3>Auth.js v5</h3><p>Google OAuth + email/password, JWT sessions, protected routes</p></div>
+        <div class="feature"><div class="icon">🗄️</div><h3>Prisma 7 + PostgreSQL</h3><p>Type-safe ORM with migrations, seed data, and client singleton</p></div>
+        <div class="feature"><div class="icon">💳</div><h3>Stripe Subscriptions</h3><p>Checkout, billing portal, webhooks, 3 pricing plans ready</p></div>
+        <div class="feature"><div class="icon">👥</div><h3>Teams & Multi-tenancy</h3><p>Organizations, roles (Owner/Admin/Member), invite system</p></div>
+        <div class="feature"><div class="icon">📧</div><h3>Email (Resend)</h3><p>Welcome + password reset with React Email templates</p></div>
+        <div class="feature"><div class="icon">🤖</div><h3>AI Integration</h3><p>OpenAI chat API + widget, rate-limited and ready to use</p></div>
+        <div class="feature"><div class="icon">📊</div><h3>Analytics Dashboard</h3><p>Stat cards + charts (recharts) for user growth and revenue</p></div>
+        <div class="feature"><div class="icon">📤</div><h3>File Uploads</h3><p>UploadThing integration for images and avatars</p></div>
+        <div class="feature"><div class="icon">📝</div><h3>Blog / CMS</h3><p>Blog listing + post detail pages with SEO metadata</p></div>
+        <div class="feature"><div class="icon">⚙️</div><h3>Settings Page</h3><p>Profile update, password change, delete account</p></div>
+        <div class="feature"><div class="icon">🔔</div><h3>Notifications</h3><p>In-app notification system with unread badge dropdown</p></div>
+        <div class="feature"><div class="icon">🚀</div><h3>CI/CD + Deploy</h3><p>GitHub Actions + Railway config + Docker + health checks</p></div>
+        <div class="feature"><div class="icon">🌙</div><h3>Dark Mode</h3><p>System-aware theme with next-themes and navbar toggle</p></div>
+        <div class="feature"><div class="icon">🔍</div><h3>SEO Optimized</h3><p>Sitemap, robots.txt, OpenGraph image generation</p></div>
+        <div class="feature"><div class="icon">📋</div><h3>Onboarding Flow</h3><p>Multi-step onboarding form for new users</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simple, transparent pricing</h2>
+        <p>One-time payment. Use it forever.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Single -->
+        <div class="price-card">
+          <h3>Single License</h3>
+          <p class="desc">For one project</p>
+          <div class="price">$79<span class="period"> one-time</span></div>
+          <!-- TODO: Replace with your Gumroad link -->
+          <a href="https://gumroad.com/l/YOUR-SINGLE-LICENSE" class="buy secondary">Buy Now</a>
+          <ul>
+            <li><span class="check">✓</span> Use in 1 commercial project</li>
+            <li><span class="check">✓</span> Modify and customize code</li>
+            <li><span class="check">✓</span> Deploy to any platform</li>
+            <li><span class="check">✓</span> Updates for 1 year</li>
+            <li><span class="check">✓</span> Documentation included</li>
+          </ul>
+        </div>
+
+        <!-- Unlimited (Popular) -->
+        <div class="price-card popular">
+          <div class="tag">Most Popular</div>
+          <h3>Unlimited License</h3>
+          <p class="desc">For unlimited projects</p>
+          <div class="price">$199<span class="period"> one-time</span></div>
+          <!-- TODO: Replace with your Gumroad link -->
+          <a href="https://gumroad.com/l/YOUR-UNLIMITED-LICENSE" class="buy primary">Buy Now</a>
+          <ul>
+            <li><span class="check">✓</span> Unlimited commercial projects</li>
+            <li><span class="check">✓</span> Use for client work (freelance/agency)</li>
+            <li><span class="check">✓</span> GitHub template access</li>
+            <li><span class="check">✓</span> Lifetime updates</li>
+            <li><span class="check">✓</span> Remove branding</li>
+            <li><span class="check">✓</span> Everything in Single</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="price-card">
+          <h3>Pro License</h3>
+          <p class="desc">Unlimited + support</p>
+          <div class="price">$299<span class="period"> one-time</span></div>
+          <!-- TODO: Replace with your Gumroad link -->
+          <a href="https://gumroad.com/l/YOUR-PRO-LICENSE" class="buy secondary">Buy Now</a>
+          <ul>
+            <li><span class="check">✓</span> Everything in Unlimited</li>
+            <li><span class="check">✓</span> 6 months email support</li>
+            <li><span class="check">✓</span> Private Discord access</li>
+            <li><span class="check">✓</span> Priority feature requests</li>
+            <li><span class="check">✓</span> Early access to new features</li>
+          </ul>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:32px; color:var(--muted); font-size:14px;">
+        💳 Secure payment via Gumroad · 30-day money-back guarantee
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>What's included?</h3>
+          <p>Next.js 16, Prisma 7, PostgreSQL, Auth.js v5, Stripe subscriptions, teams/multi-tenancy, Resend emails, OpenAI AI chat, analytics dashboard, file uploads, blog/CMS, settings, notifications, SEO, onboarding flow, CI/CD, and Railway deployment config.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I receive the code after purchase?</h3>
+          <p>After payment, you'll get instant access to a GitHub template repository. Click "Use this template" to create a new repo and start building immediately.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What's the difference between Single and Unlimited?</h3>
+          <p>Single License lets you use the boilerplate in one project. Unlimited License lets you use it in as many projects as you want, including client work.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I get a refund?</h3>
+          <p>Yes — you can request a full refund within 30 days if the boilerplate doesn't meet your needs. No questions asked.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I get updates?</h3>
+          <p>Single License includes updates for 1 year. Unlimited and Pro include lifetime updates with no additional cost.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use it for client projects?</h3>
+          <p>Yes, with the Unlimited or Pro license. You can build apps for your clients and charge them for your services.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there a free demo?</h3>
+          <p>Yes! You can try a live demo before purchasing. Check the demo link at the top of this page.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if I need help?</h3>
+          <p>Pro License includes 6 months of email support and access to a private Discord community. Comprehensive documentation is included with all licenses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to ship your SaaS?</h2>
+      <p>Stop reinventing the wheel. Start building today.</p>
+      <a href="#pricing" class="btn btn-primary">Get Started →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Built with ⚡ Next Boilerplate — © 2026. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

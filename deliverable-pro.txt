@@ -1,0 +1,32 @@
+Thank you for purchasing Next Boilerplate — Pro License!
+
+Here's what you get:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📥 GitHub Template Repo:
+   https://github.com/zagweb101/next-boilerplate
+   (Click "Use this template" to create unlimited projects)
+
+📋 License: Pro License — Unlimited projects + 6 months support + private community
+   Lifetime updates included
+
+📄 License Agreement:
+   https://github.com/zagweb101/next-boilerplate/blob/master/LICENSE.md
+
+🚀 Quick Start:
+   1. Click "Use this template" on GitHub
+   2. Clone your new repo
+   3. Run: npm install
+   4. Copy .env.example to .env and fill in your keys
+   5. Run: npx prisma migrate dev --name init
+   6. Run: npm run dev
+
+📖 Full documentation:
+   https://github.com/zagweb101/next-boilerplate#readme
+
+💬 Pro Support:
+   - Email: [your support email]
+   - Discord: [your Discord invite link]
+   - Priority responses within 24 hours
+
+Enjoy building! ⚡

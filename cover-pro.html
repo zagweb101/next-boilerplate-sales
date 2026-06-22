@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f0f0f0; }
+  .cover {
+    width: 1200px; height: 800px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: white; position: relative; overflow: hidden;
+  }
+  .grid {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .badge {
+    background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.4);
+    color: #a78bfa; font-size: 16px; font-weight: 600;
+    padding: 8px 20px; border-radius: 99px; margin-bottom: 32px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+  h1 { font-size: 64px; font-weight: 800; letter-spacing: -0.03em; margin: 0; text-align: center; }
+  h1 .accent { background: linear-gradient(90deg, #8b5cf6, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .tagline { font-size: 24px; color: #a3a3a3; margin-top: 16px; text-align: center; max-width: 700px; }
+  .features { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 40px; max-width: 800px; }
+  .feature { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 8px; font-size: 14px; color: #d4d4d4; }
+  .price { margin-top: 40px; font-size: 36px; font-weight: 700; color: #a78bfa; }
+  .tech { position: absolute; bottom: 32px; font-size: 14px; color: #525252; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="grid"></div>
+    <div class="badge"><span class="dot"></span> Next.js 16 + Prisma 7 + Tailwind v4</div>
+    <h1>Next <span class="accent">Boilerplate</span></h1>
+    <p class="tagline">Ship your SaaS in minutes, not weeks</p>
+    <div class="features">
+      <span class="feature">🔐 Auth.js v5</span>
+      <span class="feature">💳 Stripe</span>
+      <span class="feature">👥 Teams</span>
+      <span class="feature">🤖 AI Chat</span>
+      <span class="feature">📧 Email</span>
+      <span class="feature">📊 Analytics</span>
+      <span class="feature">📝 Blog</span>
+      <span class="feature">📤 Uploads</span>
+      <span class="feature">🔔 Notifications</span>
+      <span class="feature">🌙 Dark Mode</span>
+      <span class="feature">🔍 SEO</span>
+      <span class="feature">🚀 CI/CD</span>
+    </div>
+    <div class="price">Pro License — $299</div>
+    <div class="tech">TypeScript · PostgreSQL · shadcn/ui · Railway · Docker</div>
+  </div>
+</body>
+</html>
